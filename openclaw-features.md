@@ -506,13 +506,142 @@ OpenClaw 支持广泛的通信渠道，覆盖主流的聊天和协作平台。
 ## 3. 模型管理功能
 
 ### 3.1 模型支持
-- ✅ Anthropic Claude（Pro/Max/Opus 4.5）
-- ✅ OpenAI（ChatGPT/Codex）
-- ✅ Google Gemini
-- ✅ GitHub Copilot（通过代理）
-- ✅ Oracle
-- ✅ Minimax
-- ✅ 其他兼容模型
+
+OpenClaw 支持多种主流 AI 模型，提供灵活的模型切换和配置能力。
+
+#### Anthropic Claude
+- **模型系列** - 支持 Claude 系列（Pro、Max、Opus、Sonnet、Haiku）
+- **最新版本** - 支持 Claude 4.5 等最新版本
+- **认证方式** - 支持 Anthropic API Key 和 OAuth 认证
+- **上下文窗口** - 最高支持 200K Token 上下文窗口
+- **流式输出** - 支持流式 API，实时返回生成内容
+- **思考模式** - 支持 Claude 的思维链模式
+- **工具调用** - 支持 Claude 的工具调用功能
+- **图像输入** - 部分模型支持多模态输入（图像+文本）
+- **配置示例**：
+  ```json
+  {
+    "models": {
+      "providers": {
+        "anthropic": {
+          "apiKey": "sk-ant-xxxxxx",
+          "models": [
+            {
+              "id": "claude-3-5-sonnet-20241022",
+              "name": "Claude 3.5 Sonnet",
+              "contextWindow": 200000
+            }
+          ]
+        }
+      }
+    }
+  }
+  ```
+
+#### OpenAI
+- **模型系列** - 支持 GPT-4、GPT-3.5、GPT-4 Turbo、GPT-4o 等系列
+- **功能模型** - 支持 ChatGPT（聊天）、Codex（代码）、Whisper（语音）、DALL-E（图像）
+- **认证方式** - API Key 认证
+- **上下文窗口** - GPT-4 支持 128K Token，GPT-4o 支持 200K Token
+- **流式输出** - 支持流式 API
+- **函数调用** - 支持函数/工具调用
+- **多模态** - GPT-4o 支持图像输入
+- **配置示例**：
+  ```json
+  {
+    "models": {
+      "providers": {
+        "openai": {
+          "apiKey": "sk-xxxxxx",
+          "models": [
+            {
+              "id": "gpt-4o",
+              "name": "GPT-4o",
+              "contextWindow": 128000
+            }
+          ]
+        }
+      }
+    }
+  }
+  ```
+
+#### Google Gemini
+- **模型系列** - 支持 Gemini 1.5 Pro、Gemini 1.5 Flash、Gemini Ultra 等
+- **认证方式** - 通过 Google Cloud OAuth 或 API Key
+- **上下文窗口** - Gemini 1.5 Pro 支持高达 1000K Token
+- **多模态** - 强大的多模态支持（文本、图像、视频、音频）
+- **配置示例**：
+  ```json
+  {
+    "models": {
+      "providers": {
+        "google-gemini": {
+          "apiKey": "AIzaSy...",
+          "models": [
+            {
+              "id": "gemini-1.5-pro",
+              "name": "Gemini 1.5 Pro",
+              "contextWindow": 1000000
+            }
+          ]
+        }
+      }
+    }
+  }
+  ```
+
+#### GitHub Copilot
+- **访问方式** - 通过代理方式使用 GitHub Copilot
+- **模型** - 使用 Copilot 提供的 GPT-4 模型
+- **认证方式** - GitHub OAuth Token 或 PAT
+- **优势** - 对 GitHub 用户友好，无需额外 API Key
+- **限制** - 有使用配额限制
+- **适用场景** - 适合代码生成和代码相关的任务
+
+#### Oracle
+- **模型** - Oracle 云服务的 AI 模型
+- **认证方式** - Oracle Cloud API Key
+- **集成** - 完整集成到 OpenClaw 模型系统
+- **适用场景** - 企业用户使用 Oracle 云环境
+
+#### Minimax
+- **简介** - 国内 AI 模型提供商
+- **模型系列** - 支持多种大模型
+- **认证方式** - API Key 认证
+- **优势** - 国内访问速度快，适合国内用户
+- **语言** - 对中文有良好优化
+
+#### 其他兼容模型
+OpenClaw 支持任何兼容 OpenAI API 格式的模型：
+- **Azure OpenAI** - 微软 Azure 托管的 OpenAI 服务
+- **Groq** - Groq 的快速推理服务
+- **Together AI** - 提供多种开源模型的托管服务
+- **Replicate** - 提供多种模型的 API 接口
+- **本地模型** - 通过本地 API 服务（如 Ollama、LM Studio）
+- **自定义端点** - 支持配置自定义的 API 端点
+
+**通用配置示例**：
+```json
+{
+  "models": {
+    "providers": {
+      "custom": {
+        "apiKey": "sk-xxxxxx",
+        "baseUrl": "https://api.example.com/v1",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "custom-model",
+            "name": "Custom Model",
+            "contextWindow": 32000
+          }
+        ]
+      }
+    }
+  }
+}
+```
 
 ### 3.2 模型配置
 - ✅ 模型列表查询
