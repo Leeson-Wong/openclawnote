@@ -281,18 +281,93 @@ OpenClaw 提供强大的消息发送功能：
 - **配置重置** - 一键重置渠道配置到默认值
 
 ### 2.2 支持的渠道
-- ✅ WhatsApp（BlueBubbles）
-- ✅ Telegram
-- ✅ Slack
-- ✅ Discord
-- ✅ Google Chat
-- ✅ Signal
-- ✅ iMessage
-- ✅ Line
-- ✅ Matrix
-- ✅ Mattermost
-- ✅ Microsoft Teams
-- ✅ Nextcloud Talk
+
+OpenClaw 支持广泛的通信渠道，覆盖主流的聊天和协作平台。
+
+#### WhatsApp（BlueBubbles）
+- **简介** - 通过 BlueBubbles 第三方服务接入 WhatsApp
+- **功能** - 完整的 WhatsApp 功能支持，包括消息、媒体、群组
+- **配置** - 需要配置 BlueBubbles 服务器地址和 API 密钥
+- **优势** - 无需官方 API，支持更多功能
+- **限制** - 需要运行 BlueBubbles 服务器
+- **能力** - 文本消息、图片、视频、语音消息、文档、群组消息
+
+#### Telegram
+- **简介** - 官方 Bot API 支持
+- **功能** - 完整的 Telegram Bot 功能
+- **配置** - 通过 BotFather 获取 Bot Token
+- **优势** - 官方 API，稳定可靠，功能丰富
+- **能力** - 文本消息、图片、视频、音频、文档、内联按钮、表情反应、频道、群组、私信
+
+#### Slack
+- **简介** - 官方 Slack API 支持
+- **功能** - 支持 Slack Workspace 集成
+- **配置** - 创建 Slack App，配置 Bot Token 和 OAuth
+- **优势** - 企业级支持，丰富的 API 功能
+- **能力** - 文本消息、文件共享、表情反应、线程消息、频道、私信、Slash Commands
+
+#### Discord
+- **简介** - Discord Bot API 支持
+- **功能** - 完整的 Discord Bot 功能
+- **配置** - 在 Discord 开发者门户创建应用，获取 Bot Token
+- **优势** - 游戏社区友好，丰富的多媒体支持
+- **能力** - 文本消息、图片、视频、音频、表情反应、内联按钮、频道、私信、Webhook
+
+#### Google Chat
+- **简介** - Google Chat API 支持
+- **功能** - 集成 Google Workspace 的聊天功能
+- **配置** - 配置 Google Cloud 项目和 Service Account
+- **优势** - 企业级集成，与 Google 生态无缝衔接
+- **能力** - 文本消息、卡片消息、表情反应、房间、私信
+
+#### Signal
+- **简介** - Signal API 支持（通过第三方桥接）
+- **功能** - 支持 Signal 的隐私消息功能
+- **配置** - 配置 Signal Bridge 服务
+- **优势** - 端到端加密，隐私保护
+- **能力** - 文本消息、图片、视频、文件、群组消息
+
+#### iMessage
+- **简介** - 通过 BlueBubbles 支持 iMessage
+- **功能** - 完整的 iMessage 功能
+- **配置** - 配置 BlueBubbles 服务器
+- **优势** - 直接与 iMessage 集成，无需打开手机
+- **能力** - 文本消息、iMessage 效果、图片、视频、表情反应、群组消息
+
+#### Line
+- **简介** - LINE Messaging API 支持
+- **功能** - 支持 LINE 的消息功能
+- **配置** - 通过 LINE Developers 获取 Channel Access Token
+- **优势** - 亚洲用户群体庞大
+- **能力** - 文本消息、图片、视频、音频、贴纸、模板消息、Flex Message
+
+#### Matrix
+- **简介** - Matrix 协议支持
+- **功能** - 支持 Matrix 去中心化聊天网络
+- **配置** - 配置 Matrix Homeserver 和 Access Token
+- **优势** - 开放协议，联邦化，隐私保护
+- **能力** - 文本消息、媒体文件、加密消息、房间、历史消息
+
+#### Mattermost
+- **简介** - Mattermost API 支持
+- **功能** - 企业级聊天平台集成
+- **配置** - 配置 Mattermost Server 和 Bot Token
+- **优势** - 自托管，适合企业内部使用
+- **能力** - 文本消息、文件共享、表情反应、频道、私信、Slash Commands
+
+#### Microsoft Teams
+- **简介** - Microsoft Teams Bot Framework 支持
+- **功能** - 集成 Microsoft Teams 的聊天功能
+- **配置** - 通过 Azure Bot Service 配置
+- **优势** - 企业级 Office 365 集成
+- **能力** - 文本消息、卡片消息、自适应卡片、频道、私信、标签页
+
+#### Nextcloud Talk
+- **简介** - Nextcloud Talk API 支持
+- **功能** - 集成 Nextcloud 的聊天和通话功能
+- **配置** - 配置 Nextcloud Server 和应用密码
+- **优势** - 自托管，与 Nextcloud 生态集成
+- **能力** - 文本消息、图片、视频、文件、房间、通话
 
 ### 2.3 渠道功能
 - ✅ 渠道登录/登出
