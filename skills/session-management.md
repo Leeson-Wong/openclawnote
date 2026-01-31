@@ -1,84 +1,91 @@
 # 会话管理 Skill
 
-## 功能概述
-这个技能涵盖了 OpenClaw 的核心会话管理功能，包括：
+## 功能定位
+这个技能定义了 OpenClaw 的会话管理系统，使用户能够创建、管理和监控多个独立的对话会话。
+
+## 核心功能与操作指导
 
 ### 创建新会话
-- CLI 创建
-- 自动创建
-- 会话类型选择
-- 会话配置
-- 会话命名
+- **CLI 创建**
+  - 命令：`/session new --type <type> --model <model>`
+  - 实现：`SessionManager.create()`
+
+- **自动创建**
+  - 新对话来源自动创建会话
+  - 配置路径：`config/sessions/auto-create.json`
+  - 示例配置：
+    ```json
+    {
+      "enabled": true,
+      "defaultType": "chat",
+      "defaultModel": "gpt-4o"
+    }
+    ```
 
 ### 删除会话
-- 手动删除
-- 自动清理
-- 批量删除
-- 删除确认
-- 归档功能
+- **手动删除**
+  - 命令：`/session remove <session_id>`
+  - 实现：`SessionManager.delete(sessionId)`
+
+- **自动清理**
+  - 配置路径：`config/sessions/cleanup.json`
+  - 示例配置：
+    ```json
+    {
+      "inactiveDays": 7,
+      "archiveBeforeDelete": true
+    }
+    ```
 
 ### 列出所有会话
-- 完整列表
-- 状态显示
-- 活跃度显示
-- 筛选功能
-- 排序功能
-
-### 会话列表筛选
-- 按类型筛选
-- 按状态筛选
-- 按标签筛选
-- 按活跃度筛选
-- 按活跃分钟数筛选
-- 组合筛选
+- **完整列表**
+  - 命令：`/sessions list`
+  - 输出示例：
+    ```
+    Active Sessions:
+    ├─ Session 1 (Active) [Model: gpt-4o]
+    ├─ Session 2 (Idle) [Model: claude-3.5]
+    └─ Session 3 (Archived)
+    ```
 
 ### 会话历史记录
-- 完整历史
-- 消息追踪
-- 工具调用记录
-- 上下文恢复
-- 历史搜索
+- **查看历史**
+  - 命令：`/sessions history <session_id>`
+  - 实现：`SessionHistoryViewer.getHistory()`
 
 ### 会话转录
-- 自动转录
-- 完整内容
-- 格式化输出
-- 导出功能
-- 工具调用详情
+- **导出会话**
+  - 命令：`/sessions transcript <session_id> --format markdown`
+  - 支持格式：markdown, json, text
 
 ### 会话标签管理
-- 标签添加
-- 标签删除
-- 标签搜索
-- 多标签支持
-- 标签颜色
+- **添加标签**
+  - 命令：`/sessions tag <session_id> --add <tag>`
+  - 实现：`SessionTagManager.addTags()`
 
 ### 会话优先级
-- 优先级设置
-- 优先级影响
-- 自动调整
-- 优先级显示
+- **设置优先级**
+  - 命令：`/sessions priority <session_id> --level high`
+  - 可选级别：low, medium, high
 
 ### 会话活跃度追踪
-- 活动时间记录
-- 活跃度计算
-- 活跃度分级
-- 不活跃标记
-- 活跃度报告
-
-### 多会话并发
-- 并发支持
-- 资源隔离
-- 并发限制
-- 队列管理
-- 会话切换
+- **查看活跃度**
+  - 命令：`/sessions activity <session_id>`
+  - 输出示例：
+    ```
+    Session Activity Report:
+    ├─ Last Active: 2 hours ago
+    ├─ Message Count: 45
+    └─ Engagement Score: 85%
+    ```
 
 ## 使用场景
-- 会话创建
-- 会话删除
-- 会话列表管理
-- 会话历史追踪
+- 管理多个对话会话
+- 监控会话状态
+- 查看会话历史
+- 导出会话记录
 
-## 配置方法
-通过 `/session list` 查看会话列表
-通过 `/session remove` 删除会话
+## 注意事项
+- 删除会话前建议先归档
+- 不同会话可以使用不同的模型
+- 活跃度报告可以帮助优化资源分配
